@@ -1,0 +1,28 @@
+<! DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>クイズアプリ</title>
+        <link rel = "stylesheet" href = "../css/style.css">
+        <link rel = "stylesheet" href = "https://fonts.googleapis.com/css?family=Lobster+Two">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Freckle+Face&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+　　　　<link href="https://fonts.googleapis.com/css2?family=Freckle+Face&family=Press+Start+2P&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class = "container">
+            <h3>Life is Tech! Quiz</h3>
+            <p><%= @questions[@number][0] %></p>
+            <form action = "/question/check/ <%= @number %>" method = "post">
+                <h4><input type= "radio" name= "select_answer" value= "1"><%= @questions[@number][1] %></h4>
+                <h4><input type = "radio" name = "select_answer" value = "2"><%= @questions[@number][2] %></h4>
+                <h4><input type = "radio" name = "select_answer" value = "3"><%= @questions[@number][3] %></h4>
+                <h4><input type = "radio" name = "select_answer" value = "4"><%= @questions[@number][4] %></h4><br>
+                <button type = "submit">つぎへ</button>
+            </form>
+        </div>
+    </body>
+</html>
+        
+    
