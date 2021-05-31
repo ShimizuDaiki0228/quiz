@@ -1,99 +1,72 @@
 /* 全体 */
 body {
-  /* 背景画像　*/
-  background-image: url(../images/cat.jpeg);
-
-  /* 背景画像のサイズ */
-  background-size: cover;
+  width: 100%;
+  height: 0;
+  padding-top: calc(400 / 1000 * 100%); /* calc(画像高さ ÷ 画像横幅 × 100%) */
+  background: url(../images/flower.jpeg) center center / cover no-repeat;
+  background-color : #150e0a;
 }
 
-/* containerクラス */
-.container {
-  /* 幅 */
-  width: 35vw;
-
-  /* 文字を中央寄せ　*/
-  text-align: center;
-
-  /* 枠線　*/
-  border: 1px solid white;
-
-  /* 余白 */
-  margin: 10% auto;
-  padding: 20px;
-
-  /* 文字色 */
-  color: #ececec;
-
-  /* 背景色 */
-  background: #323232;
+.card-body-top{
+	background-color: rgba(255, 255, 255, 0.4);
+	position:relative;
+	bottom: 400px;
+  padding: 8%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #837c78;
 }
 
-/* h3タグ */
-h3 {
-  /* 余白 */
-  margin: 30px;
-
-  /* 字体 */
-  /*font-family: "Lobster Two", cursive;*/
-  
-  font-family: 'Freckle Face', cursive;
-  font-family: 'Press Start 2P', cursive;
-  
-  /* 文字の大きさ */
-  font-size: 30px;
+.card-body-out{
+  background-color: rgba(255, 255, 255, 0.4);
+	position:relative;
+	bottom: 400px;
+	width: 800px;
+  padding: 4%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #837c78;
 }
 
-h4 {
-  
-  margin: 30px;
-  
-
-  
-  font-size: 20px;
+.card-body-new{
+  background-color: rgba(255, 255, 255, 0.4);
+	position:relative;
+	bottom: 400px;
+	width: 800px;
+  padding: 4%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #837c78;
 }
 
-/* buttonタグ　*/
-button {
-  /* 余白 */
-  margin: 40px;
-
-  /* 枠の角を丸くする */
-  border-radius: 30px;
-
-  /* 高さ */
-  height: 40px;
-
-  /* 幅 */
-  width: 120px;
+.card-body-top-signup{
+	background-color: rgba(35, 26, 21, 0.4);
+	position:relative;
+	bottom: 300px;
+  padding: 8%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #837c78;
 }
 
-/* マウスをボタンにかざしたとき */
-button:hover {
-  /* 不透明度 */
-  opacity: 0.6;
+.card-body-in{
+	background-color: rgba(0, 0, 0, 0.4);
+	position:relative;
+  padding: 8%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #837c78;
 }
 
-input[type="text"] {
-  padding: 9px;
-  margin-top: 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 0.8em;
-  color: #474747;
+button[type = "submit"]{
+  background-color: rgba(255,255,255,0);
+  border: none; 
   outline: none;
-  margin-bottom: -20px;
 }
 
-table {
-  width: 85%;
-  margin-top: 40px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-th,
-td {
-  padding: 15px;
-  text-align: center;
+.card-bottom{
+  	background-color: rgba(35, 26, 21, 0.4);
+  	border-width: 1px;
+    border-style: solid;
+    border-color: #403733;
 }

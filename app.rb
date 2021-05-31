@@ -1,62 +1,88 @@
 require 'bundler/setup'
 Bundler.require
 require 'sinatra/reloader' if development?
+
 require './models.rb'
 
-before do
-    if Result.all.length == 0 
-        Result.create(score:0)
-    end
-    
-    @questions = Array.new
-    @questions.push(["Webサービスプログラミングコースで学んでいる、赤色の宝石の名前を使っている言語は？", "Garnet", "Ruby", "Amethyst", "Opal", "2"])
-    @questions.push(["Life is Tech!でプログラミングを教えてくれるのは誰？", "メンバー", "センセー", "メンター", "センサー", "3"])
-    @questions.push(["Life is Tech!で主にRubyを使うコースはどれ？", "デザイナーコース", "Minecraftプログラミングコース", "アニメーションコース", "Webサービスプログラミングコース", "4"])
-end
+enable :sessions
 
 get '/' do
-    result = Result.first
-    result.score = 0
-    result.save
-    redirect '/question/0'
+    @contents = Contribution.all.order("id desc")
+    erb :test
 end
 
-get '/question/:id' do
- @number = params[:id].to_i
- erb :question
+get '/signin' do
+    erb :sign_in
 end
 
-post '/question/check/:id' do
-    number = params[:id].to_i
-    answer = @questions[number][5]
-    select_answer = params[:select_answer]
-    if answer == select_answer
-        result = Result.first
-        result.score = result.score + 1
-        result.save
+get '/signup' do
+    erb :sign_up
+end
+
+get '/profile' do
+    erb :profile
+end
+
+get '/new' do
+    erb :new
+end
+
+get '/create_silhouette' do
+    @users = User.all
+    @contributions = Contribution.all
+    @material_bottoms = MaterialBottom.all
+    erb :silhouette
+end
+
+post '/signin' do
+    user = User.find_by(mail: params[:mail])
+    name = User.find_by(name: params[:name])
+    if user && user.authenticate(params[:password])
+        session[:user] = user.id
     end
-    if number + 1 < @questions.length
-        number = number + 1
-        redirect "/question/#{number}"
-    else
-        redirect "/result"
+    redirect '/'
+end
+
+post '/signup' do
+    @user = User.create(mail:params[:mail], name:params[:name], password:params[:password], introduction:params[:introduction],
+    password_confirmation:params[:password_confirmation])
+    if @user.persisted?
+        session[:user] = @user.id
     end
+    redirect '/'
 end
 
-get '/result' do
-    @score = Result.first.score
-    erb :result
+
+get '/signout' do
+    session[:user] = nil
+    redirect '/'
 end
 
-get '/ranking' do
-    @ranks = Rank.all.order("score desc")
-    erb :ranking
+get '/edit/:id' do
+    @user = User.find(params[:id])
+    erb :edit
 end
 
-post '/ranking' do
-    Rank.create(
-        name: params[:name],
-        score: Result.first.score
-    )
-    redirect '/ranking'
+post '/edit/:id' do
+    #@user = User.update(mail: params[:mail], name: params[:name], introduction: params[:introduction])
+    user = User.find(params[:id])
+    user.update({
+    mail: params[:mail],
+    name: params[:name],
+    introduction: params[:introduction],
+  })
+    redirect '/'
+end
+
+post '/new' do
+  Contribution.create({
+    body: params[:body],
+  })
+
+  redirect "/" 
+end
+
+post "/delete/:id" do
+  Contribution.find(params[:id]).destroy
+  redirect "/"
 end

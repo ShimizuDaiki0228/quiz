@@ -1,7 +1,7 @@
 default_env: &default
   adapter: postgresql
   encoding: unicode
-  database: c_quiz
+  database: c_original
 
 development:
   <<: *default
